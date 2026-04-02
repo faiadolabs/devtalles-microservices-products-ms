@@ -6,8 +6,18 @@
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
+  moduleFormart = "cjs"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
 }
+
+model Product { 
+  id    Int     @id @default(autoincrement()) 
+  name  String @unique
+  price Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+} 
