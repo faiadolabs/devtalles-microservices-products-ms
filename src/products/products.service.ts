@@ -3,8 +3,6 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { PrismaService } from 'src/prisma.service';
 import { PaginationDto } from 'src/common';
-import { Product } from './entities/product.entity';
-import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class ProductsService {
@@ -61,12 +59,15 @@ export class ProductsService {
 
   async update(id: number, updateProductDto: UpdateProductDto) {
 
+    // Renombro el id para separarlo de la data porque no me interesa actualizarlo ni usarlo
+    const { id:__, ...data} = updateProductDto
+
     // Si no lanza exception se asegura que exista
     await this.findOne(id);
 
     return this.prisma.product.update({
       where: { id },
-      data: updateProductDto
+      data: data
     });
   }
 
