@@ -3,9 +3,16 @@
 
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
+// Muy importante la propiedad moduleFormat
+// Previene de este error:  Object.defineProperty(exports, "__esModule", { value: true });
+//                          ReferenceError: exports is not defined in ES module scope
+// Si se cambia este archivo se debe regenerar el cliente: npx prisma generate
+
 generator client {
   provider      = "prisma-client"
   output        = "../generated/prisma"
+
+  // Muy importante esta propiedad:
   moduleFormat  = "cjs"
 }
 
