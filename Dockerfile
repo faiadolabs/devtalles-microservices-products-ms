@@ -10,6 +10,7 @@ RUN npm install
 
 COPY . .
 
+# Esto funciona bien aquí, porque la db es sqlite y está autocontenida en la imagen (no depende de otro container)
 RUN npx prisma generate
 
 
